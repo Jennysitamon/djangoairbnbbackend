@@ -20,6 +20,7 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 AUTH_USER_MODEL = 'useraccount.User'
+
 SITE_ID = 1
 
 WEBSITE_URL = 'http://localhost:8000'
@@ -44,7 +45,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES':(
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     )
 }
@@ -53,6 +54,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 REST_AUTH = {
     "USE_JWT": True,
