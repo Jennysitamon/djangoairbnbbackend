@@ -8,11 +8,10 @@ then
         sleep 0.1
     done
 
-    echo "The database is up and running :-D"
+    echo "The database is up and running :)"
 fi
 
 python manage.py makemigrations
 python manage.py migrate
 
 exec "$@"
-

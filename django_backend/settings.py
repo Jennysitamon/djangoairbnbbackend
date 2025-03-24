@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
 
 AUTH_USER_MODEL = 'useraccount.User'
 
@@ -62,8 +62,6 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": False
 }
 
-
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,6 +70,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     
     'rest_framework',
     'rest_framework.authtoken',
@@ -86,6 +85,7 @@ INSTALLED_APPS = [
     
     'corsheaders',
     
+    'chat',
     'property',
     'useraccount', 
 ]
@@ -121,7 +121,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -132,7 +131,7 @@ DATABASES = {
         'USER': os.environ.get("SQL_USER"),
         'PASSWORD': os.environ.get("SQL_PASSWORD"),
         'HOST': os.environ.get("SQL_HOST"),
-        'PORT': os.environ.get("SQL_PORT")
+        'PORT': os.environ.get("SQL_PORT"),
     }
 }
 
