@@ -20,7 +20,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.accept()
 
-    async def disconnect(self):
+    async def disconnect(self, code):
         # Leave room
 
         await self.channel_layer.group_discard(
@@ -61,5 +61,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
     @sync_to_async
     def save_message(self, conversation_id, body, sent_to_id):
         user = self.scope['user']
+        print('el usuario es: ', user)
 
         ConversationMessage.objects.create(conversation_id=conversation_id, body=body, sent_to_id=sent_to_id, created_by=user)
